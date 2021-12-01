@@ -5,6 +5,7 @@ pub fn run_assignment() {
   let data = load_file_to_vector();
   part1(&data);
   part2(&data);
+  part2_simpler(&data);
 }
 
 fn part1(data: &Vec<i32>) -> () {
@@ -18,6 +19,14 @@ fn part2(data: &Vec<i32>) -> () {
   while n < array_fetch_max {
     combined_data.push(data[n..n+3].iter().sum());
     n += 1;
+  }
+  calculate_bigger(&combined_data);
+}
+
+fn part2_simpler(data: &Vec<i32>) -> () {
+  let mut combined_data: Vec<i32> = Vec::new();
+  for window in data.windows(3) {
+    combined_data.push(window.iter().sum());
   }
   calculate_bigger(&combined_data);
 }
