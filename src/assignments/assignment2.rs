@@ -1,6 +1,10 @@
 use super::super::file_reader;
+use convert_case::{Case, Casing};
 use std::path::Path;
+use std::str::FromStr;
+use strum_macros::EnumString;
 
+#[derive(EnumString)]
 enum Direction {
   Up,
   Down,
@@ -66,14 +70,11 @@ fn load_file_to_vector() -> Vec<Movement> {
       for result_line in lines {
         if let Ok(line) = result_line {
           let mut split_data = line.split_whitespace();
-          let direction = match split_data.next() {
-            Some("up") => Some(Direction::Up),
-            Some("down") => Some(Direction::Down),
-            Some("forward") => Some(Direction::Forward),
-            _ => None,
-          };
+          let direction =
+            Direction::from_str(&split_data.next().unwrap().to_case(Case::Pascal).to_string());
+
           let amount: i32 = split_data.next().unwrap().parse::<i32>().unwrap();
-          if let Some(dir) = direction {
+          if let Ok(dir) = direction {
             data.push(Movement {
               direction: dir,
               amount,
