@@ -65,15 +65,20 @@ fn load_file_to_vector() -> Vec<Movement> {
     Ok(lines) => {
       for result_line in lines {
         if let Ok(line) = result_line {
-          let split_data: Vec<&str> = line.split_whitespace().collect();
-          let direction = match split_data[0] {
-            "up" => Direction::Up,
-            "down" => Direction::Down,
-            "forward" => Direction::Forward,
-            _ => Direction::Up,
+          let mut split_data = line.split_whitespace();
+          let direction = match split_data.next() {
+            Some("up") => Some(Direction::Up),
+            Some("down") => Some(Direction::Down),
+            Some("forward") => Some(Direction::Forward),
+            _ => None,
           };
-          let amount: i32 = split_data[1].parse::<i32>().unwrap();
-          data.push(Movement { direction, amount });
+          let amount: i32 = split_data.next().unwrap().parse::<i32>().unwrap();
+          if let Some(dir) = direction {
+            data.push(Movement {
+              direction: dir,
+              amount,
+            });
+          }
         }
       }
     }
