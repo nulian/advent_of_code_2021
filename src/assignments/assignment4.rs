@@ -168,7 +168,6 @@ fn load_file_to_vector() -> Game {
     let mut lookup: Vec<u8> = Vec::new();
     for i in 0..=4 {
       if let Some(Ok(text_line)) = lines.next() {
-        println!("{}", text_line);
         let test = re.captures_iter(&text_line).enumerate();
         for (j, caps) in test {
           let item = caps[0].parse::<u8>().unwrap();
