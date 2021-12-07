@@ -36,7 +36,6 @@ impl Fish {
   }
 
   pub fn add(&mut self, amount: u64) {
-    // println!("same age fish: {}, amount: {}", self.same_age_fishes, amount);
     self.same_age_fishes += amount;
   }
 
@@ -44,10 +43,8 @@ impl Fish {
     if self.internal_timer > 6 {
       let move_to_next_fishes = self.same_age_fishes;
       self.same_age_fishes = 0;
-      // println!("intt: {} move to next: {}", self.internal_timer, move_to_next_fishes);
       return (true, (self.internal_timer - 1, move_to_next_fishes));
     } else if self.internal_timer > 0 {
-      // println!("intt: {} amount of fish: {}", self.internal_timer, self.same_age_fishes);
       self.internal_timer -= 1;
       return (false, (0, 0));
     } else {
