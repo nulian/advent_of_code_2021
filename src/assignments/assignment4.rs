@@ -157,7 +157,6 @@ fn load_file_to_vector() -> Game {
   let re = Regex::new(r"(\d+)").unwrap();
 
   if let Some(line) = lines.next() {
-    // println!("{:?}", line);
     game.number_draw_list = line
       .unwrap()
       .split(",")
@@ -180,31 +179,5 @@ fn load_file_to_vector() -> Game {
     }
     game.boards.push(Board::new(array, lookup));
   }
-
-  println!("{:?}", game);
-  // for result_line in lines {
-  //   if let Ok(line) = result_line {
-  //     if line.contains(",") {
-  //       game.number_draw_list = line.split(",").map(|item| item.parse::<u8>().unwrap()).collect();
-  //     } else if line == "" {
-  //       let row = lines.next();
-  //       let row1 = lines.next();
-  //       let row2 = lines.next();
-  //       let row3 = lines.next();
-  //       let row4 = lines.next();
-  //     }
-  //     // let mut split_data = line.split_whitespace();
-  //     // // let direction =
-  //     // //   Direction::from_str(&split_data.next().unwrap().to_case(Case::Pascal).to_string());
-  //     //
-  //     // let amount: i32 = split_data.next().unwrap().parse::<i32>().unwrap();
-  //     // // if let Ok(dir) = direction {
-  //     //   data.push(Movement {
-  //     //     direction: dir,
-  //     //     amount,
-  //     //   });
-  //     // }
-  //   }
-  // }
   return game;
 }
