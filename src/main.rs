@@ -9,5 +9,6 @@ fn main() {
   // assignments::assignment3::run_assignment();
   // assignments::assignment4::run_assignment();
   // assignments::assignment5::run_assignment();
-  assignments::assignment6::run_assignment();
+  // assignments::assignment6::run_assignment();
+  assignments::assignment7::run_assignment();
 }
