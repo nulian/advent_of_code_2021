@@ -92,14 +92,7 @@ impl Map {
           let row_size = self.ground_map[0].len();
           self.ground_map.resize(fold.amount as usize, vec![0; row_size]);
           folded_halve.reverse();
-          for (i, row) in folded_halve.iter().enumerate() {
-            for (j, item) in row.iter().enumerate() {
-              if item.clone() == 1 {
-                self.ground_map[i][j] = 1;
-              }
-            }
-
-          }
+          Self::apply_folded_halve(&mut self.ground_map, &folded_halve);
         }
         Direction::X => {
           let row_size = self.ground_map[0].len();
@@ -114,16 +107,20 @@ impl Map {
           for map_row in self.ground_map.iter_mut() {
             map_row.resize(fold.amount as usize, 0);
           }
-          for (i, row) in folded_halve.iter().enumerate() {
-            for (j, item) in row.iter().enumerate() {
-              if item.clone() == 1 {
-                self.ground_map[i][j] = 1;
-              }
-            }
-
-          }
+          Self::apply_folded_halve(&mut self.ground_map, &folded_halve);
         }
       }
+    }
+  }
+
+  pub fn apply_folded_halve(ground_map: &mut Vec<Vec<u8>>, folded_halve: &Vec<Vec<u8>>) {
+    for (i, row) in folded_halve.iter().enumerate() {
+      for (j, item) in row.iter().enumerate() {
+        if item.clone() == 1 {
+          ground_map[i][j] = 1;
+        }
+      }
+
     }
   }
 
