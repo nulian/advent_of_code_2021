@@ -6,4 +6,5 @@ pub mod assignment5;
 pub mod assignment6;
 pub mod assignment7;
 pub mod assignment8;
+pub mod assignment11;
 pub mod assignment13;
