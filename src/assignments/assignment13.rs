@@ -66,13 +66,13 @@ impl Map {
     Self {
       points,
       folds,
-      ground_map: vec![vec![0; max_y as usize]; max_x as usize],
+      ground_map: vec![vec![0; max_x as usize]; max_y as usize],
     }
   }
 
   fn fill_map(&mut self) {
     for point in self.points.iter() {
-      self.ground_map[point.x as usize][point.y as usize] = 1;
+      self.ground_map[point.y as usize][point.x as usize] = 1;
     }
   }
 
@@ -80,7 +80,7 @@ impl Map {
     for fold in self.folds.iter() {
       let mut folded_halve: Vec<Vec<u8>> = Vec::new();
       match fold.direction {
-        Direction::X =>{
+        Direction::Y =>{
           let max_x = self.ground_map.len();
           for i in (fold.amount as usize)..max_x {
             let mut row: Vec<u8> = Vec::new();
@@ -101,7 +101,7 @@ impl Map {
 
           }
         }
-        Direction::Y => {
+        Direction::X => {
           let row_size = self.ground_map[0].len();
           for map_row in self.ground_map.iter() {
             let mut row: Vec<u8> = Vec::new();
